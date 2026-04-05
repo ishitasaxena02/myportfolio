@@ -1,0 +1,307 @@
+.experience-timeline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    margin: 4rem 0;
+    width: 100%;
+}
+
+/* Shadow walking line */
+.walking-shadow-line {
+    position: absolute;
+    top: 50%;
+    left: 38%;
+    width: 24%;
+    height: 12px;
+    background: radial-gradient(ellipse at center,
+        rgba(135, 206, 235, 0.3) 0%,
+        rgba(255, 255, 255, 0.3) 30%,
+        rgba(135, 206, 235, 0.2) 60%,
+        transparent 100%
+    );
+    border-radius: var(--radius-full);
+    transform: translateY(15px);
+    z-index: 2;
+    filter: blur(3px);
+    opacity: 0.5;
+}
+
+/* Walking Man Animation */
+.walking-man {
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 50px;
+    transform: translateY(-50%);
+    z-index: 3;
+    animation: man-walk 6s linear infinite;
+    filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.6));
+    opacity: 0.8;
+}
+
+.walking-man::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    width: 30px;
+    height: 8px;
+    background: radial-gradient(ellipse, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    filter: blur(2px);
+    opacity: 0.4;
+    animation: shadow-walk 6s linear infinite;
+}
+
+@keyframes shadow-walk {
+    0%, 100% { opacity: 0.2; transform: translateX(-50%) scale(0.8); }
+    50% { opacity: 0.4; transform: translateX(-50%) scale(1.1); }
+}
+
+.walking-man svg { width: 100%; height: 100%; }
+
+@keyframes man-walk {
+    0% { left: 38%; opacity: 0.3; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { left: 62%; opacity: 0.3; }
+}
+
+.walking-man::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    background: linear-gradient(45deg,
+        transparent 0%,
+        rgba(0, 255, 255, 0.1) 25%,
+        transparent 50%,
+        rgba(255, 0, 128, 0.1) 75%,
+        transparent 100%);
+    border-radius: 50%;
+    animation: hologram-rotate 3s linear infinite;
+    z-index: -1;
+}
+
+@keyframes hologram-rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Experience Cards */
+.experience-card {
+    width: 40%;
+    background: linear-gradient(145deg,
+        rgba(15, 15, 35, 0.95) 0%,
+        rgba(25, 25, 45, 0.95) 50%,
+        rgba(20, 20, 40, 0.95) 100%);
+    border: 1px solid var(--border-subtle);
+    border-radius: 20px;
+    padding: 35px;
+    position: relative;
+    backdrop-filter: blur(20px);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+    opacity: 0;
+    animation: experience-card-reveal 0.8s ease forwards;
+}
+
+.experience-card:first-child {
+    animation-delay: 0.3s;
+    transform: translateX(-20px);
+}
+
+.experience-card:last-child {
+    animation-delay: 0.6s;
+    transform: translateX(20px);
+}
+
+@keyframes experience-card-reveal {
+    from { opacity: 0; transform: translateY(30px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Glowing Border Effect */
+.experience-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(45deg,
+        transparent 0%,
+        rgba(0, 255, 255, 0.2) 25%,
+        rgba(255, 0, 128, 0.2) 50%,
+        rgba(0, 255, 255, 0.2) 75%,
+        transparent 100%);
+    border-radius: 21px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.experience-card:hover::before {
+    opacity: 1;
+}
+
+.experience-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 20px var(--glow-subtle);
+}
+
+/* Card Header */
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    gap: 16px;
+}
+
+.experience-info h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 0 0 6px;
+    font-family: var(--font-primary);
+    line-height: 1.2;
+}
+
+.experience-info .experience-company {
+    font-size: 1rem;
+    color: var(--secondary);
+    margin: 0;
+    font-family: var(--font-mono);
+    font-weight: 500;
+}
+
+.experience-duration {
+    background: rgba(0, 255, 255, 0.06);
+    border: 1px solid var(--border-subtle);
+    border-radius: 20px;
+    padding: 8px 14px;
+    font-size: 0.75rem;
+    color: var(--primary);
+    font-family: var(--font-mono);
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+}
+
+.experience-duration::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.05), transparent);
+    animation: experience-duration-shimmer 5s ease-in-out infinite;
+}
+
+@keyframes experience-duration-shimmer {
+    0%, 100% { left: -100%; }
+    50% { left: 100%; }
+}
+
+/* Card Content */
+.experience-description {
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+
+.experience-description ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.experience-description li {
+    position: relative;
+    padding-left: 16px;
+}
+
+.experience-description li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-size: 0.85rem;
+}
+
+.exp-highlight {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* Technology Tags */
+.experience-technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.experience-tech {
+    background: linear-gradient(135deg, rgba(255, 0, 128, 0.08) 0%, rgba(0, 255, 255, 0.08) 100%);
+    border: 1px solid var(--border-subtle);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.experience-tech:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary);
+    color: var(--primary);
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(255, 0, 128, 0.1) 100%);
+    box-shadow: 0 5px 15px var(--glow-subtle);
+}
+
+/* Current Job */
+.experience-card.experience-current {
+    border-color: rgba(0, 255, 255, 0.3);
+}
+
+.experience-card.experience-current::after {
+    content: 'CURRENT';
+    position: absolute;
+    top: -8px;
+    right: 20px;
+    background: linear-gradient(45deg, #00ffff, #ff0080);
+    color: #000;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-family: var(--font-mono);
+}
+
+/* Company Icon */
+.experience-icon {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, #ff0080, #00ffff);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: #000;
+    font-size: 1rem;
+    position: absolute;
+    top: -12px;
+    left: 25px;
+    box-shadow: 0 8px 20px var(--glow-subtle);
+}

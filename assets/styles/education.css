@@ -1,0 +1,324 @@
+.education-section {
+    perspective: 2000px;
+    width: 100%;
+}
+
+.holographic-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transform-style: preserve-3d;
+    position: relative;
+    overflow: hidden;
+}
+
+.education-projector-device {
+    position: relative;
+    z-index: 10;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+    margin-right: 2%;
+}
+
+.education-projector-lens {
+    width: 10rem;
+    height: 10rem;
+    background: radial-gradient(
+        circle,
+        rgba(0, 255, 255, 0.7) 0%,
+        rgba(0, 255, 255, 0.25) 15%,
+        rgba(0, 255, 255, 0.12) 30%,
+        rgba(0, 255, 255, 0.06) 50%,
+        rgba(0, 255, 255, 0.02) 70%,
+        transparent 100%
+    );
+    border-radius: 50%;
+    box-shadow:
+        0 0 20px rgba(0, 255, 255, 0.4),
+        0 0 40px rgba(0, 255, 255, 0.2),
+        inset 0 0 15px rgba(0, 255, 255, 0.2);
+    animation: lens-glow 3s ease-in-out infinite alternate;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.education-projector-device:hover .education-projector-lens {
+    transform: scale(1.1);
+    box-shadow:
+        0 0 50px rgba(0, 255, 255, 0.9),
+        0 0 80px rgba(0, 255, 255, 0.7),
+        inset 0 0 35px rgba(0, 255, 255, 0.5);
+}
+
+@keyframes lens-glow {
+    0% {
+        box-shadow:
+            0 0 30px rgba(0, 255, 255, 0.7),
+            inset 0 0 15px rgba(0, 255, 255, 0.4);
+    }
+    100% {
+        box-shadow:
+            0 0 50px rgba(0, 255, 255, 1),
+            inset 0 0 25px rgba(0, 255, 255, 0.6);
+    }
+}
+
+.education-projector-light-beam {
+    position: absolute;
+    left: 5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: calc(100vw - 8rem);
+    height: 100vh;
+    background: linear-gradient(90deg, rgba(0, 255, 255, 0.25) 0%, rgba(0, 255, 255, 0.12) 20%, rgba(0, 255, 255, 0.08) 40%, rgba(0, 255, 255, 0.05) 60%, rgba(0, 255, 255, 0.03) 80%, transparent 100%);
+    clip-path: polygon(0 50%, 100% -60%, 100% 160%, 0 50%);
+    animation: beam-flicker 2s ease-in-out infinite;
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.education-projector-light-beam::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, rgba(0, 255, 255, 0.1) 0%, rgba(255, 0, 255, 0.05) 30%, rgba(0, 255, 255, 0.03) 60%, transparent 90%);
+    clip-path: polygon(0 50%, 100% 0%, 100% 0%, 0 50%);
+    animation: projection-shimmer 6s ease-in-out infinite;
+}
+
+.education-grid {
+    display: flex;
+    width: 75%;
+    height: 65vh;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 5;
+    padding: 2%;
+}
+
+.education-card {
+    background: linear-gradient(145deg, rgba(26, 26, 46, 0.9), rgba(22, 33, 62, 0.9), rgba(15, 52, 96, 0.8));
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transform: perspective(800px) rotateY(-12deg);
+}
+
+.education-card[data-level="matriculation"] { width: 30%; height: 69%; z-index: 3; }
+.education-card[data-level="intermediate"] { width: 32%; height: 82%; z-index: 4; }
+.education-card[data-level="btech"] { width: 34%; height: 95%; z-index: 5; }
+
+.education-card::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px; right: -1px; bottom: -1px;
+    background: linear-gradient(45deg, transparent 0%, rgba(0, 255, 255, 0.08) 25%, rgba(0, 255, 255, 0.2) 50%, rgba(0, 255, 255, 0.08) 75%, transparent 100%);
+    background-size: 400% 400%;
+    border-radius: 12px;
+    animation: elegant-border-flow 6s ease-in-out infinite;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    z-index: -1;
+}
+
+.education-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.03) 20%, rgba(0, 255, 255, 0.08) 50%, rgba(0, 255, 255, 0.03) 80%, transparent);
+    transform: skewX(-15deg);
+    animation: subtle-scan 6s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.education-card:hover {
+    border-color: rgba(0, 255, 255, 0.3);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 25px var(--glow-subtle);
+    z-index: 10;
+    transform: perspective(800px) rotateX(1deg) rotateY(-8deg) scale(1.03);
+}
+
+.education-card:hover::before { opacity: 1; }
+
+.education-card:hover .education-grade-value {
+    text-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+    transform: scale(1.03);
+}
+
+.education-card:hover .education-degree-title {
+    text-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+}
+
+.education-card-header {
+    background: linear-gradient(45deg, rgba(255, 0, 128, 0.3), rgba(0, 255, 255, 0.3));
+    font-weight: bold;
+    font-size: 0.85rem;
+    padding: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    align-items: center;
+}
+
+.education-institute-name {
+    font-size: 0.7rem;
+    opacity: 0.7;
+}
+
+.education-student-section {
+    padding: 0.9rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border-subtle);
+    position: relative;
+    z-index: 2;
+}
+
+.education-student-label {
+    color: var(--text-secondary);
+    font-size: 0.65rem;
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.education-student-name {
+    font-size: 0.95rem;
+    font-weight: bold;
+    margin-bottom: 0.7rem;
+}
+
+.education-academic-year {
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.education-degree-section {
+    padding: 0.9rem;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.education-degree-title {
+    color: #ff00ff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(255, 0, 255, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.education-degree-subtitle {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-style: italic;
+    line-height: 1.4;
+}
+
+.education-performance-section {
+    background: rgba(0, 255, 255, 0.03);
+    padding: 0.9rem;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.education-performance-label {
+    color: var(--text-secondary);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.education-grade-display {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.2rem;
+}
+
+.education-grade-value {
+    color: #ff00ff;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-shadow: 0 0 15px rgba(255, 0, 255, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.education-grade-max { font-size: 0.85rem; }
+.education-gpa-text { font-size: 0.75rem; color: var(--text-muted); }
+
+@keyframes beam-flicker {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.7; }
+}
+
+@keyframes projection-shimmer {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.4; }
+}
+
+@keyframes elegant-border-flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes subtle-scan {
+    0% { left: -100%; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { left: 100%; opacity: 0; }
+}
+
+@keyframes elegant-pulse {
+    0%, 100% { transform: scale(1); text-shadow: 0 0 15px rgba(255, 0, 255, 0.2); }
+    50% { transform: scale(1.05); text-shadow: 0 0 25px rgba(255, 0, 255, 0.4); }
+}
+
+@keyframes smooth-float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-4px); }
+}
+
+@keyframes gentle-glow {
+    0%, 100% { box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 25px var(--glow-subtle); }
+    50% { box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 35px var(--glow-medium); }
+}
+
+.education-card.active-pulse { animation: gentle-glow 1.5s ease-in-out; }
+.education-card.active-pulse .education-grade-value { animation: elegant-pulse 1.2s ease-in-out; }
+.education-card.active-float { animation: smooth-float 2s ease-in-out; }
+.education-projector-device.projector-active { animation: smooth-float 1s ease-in-out; }
+.education-projector-device.projector-active .education-projector-lens { animation: lens-glow 0.8s ease-in-out; }
+.beam-boost .education-projector-light-beam { opacity: 1; animation: beam-flicker 0.5s ease-in-out; }

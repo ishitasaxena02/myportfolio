@@ -1,0 +1,47 @@
+<svg viewBox="0 0 40 50" xmlns="http://www.w3.org/2000/svg">
+    <!-- Holographic man figure -->
+    <defs>
+        <filter id="glow">
+            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+            <feMerge> 
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+    
+    <!-- Head -->
+    <circle cx="20" cy="8" r="5" fill="#00ffff" filter="url(#glow)" opacity="0.9">
+        <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Body -->
+    <rect x="17" y="13" width="6" height="20" rx="3" fill="#00ffff" filter="url(#glow)" opacity="0.9">
+        <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+    </rect>
+    
+    <!-- Arms -->
+    <g opacity="0.9">
+        <line x1="17" y1="18" x2="12" y2="25" stroke="#00ffff" stroke-width="3" stroke-linecap="round" filter="url(#glow)">
+            <animateTransform attributeName="transform" type="rotate" values="0 17 18; 15 17 18; 0 17 18" dur="1.5s" repeatCount="indefinite"/>
+        </line>
+        <line x1="23" y1="18" x2="28" y2="25" stroke="#00ffff" stroke-width="3" stroke-linecap="round" filter="url(#glow)">
+            <animateTransform attributeName="transform" type="rotate" values="0 23 18; -15 23 18; 0 23 18" dur="1.5s" repeatCount="indefinite"/>
+        </line>
+    </g>
+    
+    <!-- Legs -->
+    <g opacity="0.9">
+        <line x1="19" y1="33" x2="16" y2="46" stroke="#00ffff" stroke-width="3" stroke-linecap="round" filter="url(#glow)">
+            <animateTransform attributeName="transform" type="rotate" values="0 19 33; 20 19 33; 0 19 33; -20 19 33" dur="1.5s" repeatCount="indefinite"/>
+        </line>
+        <line x1="21" y1="33" x2="24" y2="46" stroke="#00ffff" stroke-width="3" stroke-linecap="round" filter="url(#glow)">
+            <animateTransform attributeName="transform" type="rotate" values="0 21 33; -20 21 33; 0 21 33; 20 21 33" dur="1.5s" repeatCount="indefinite"/>
+        </line>
+    </g>
+    
+    <!-- Holographic scan lines -->
+    <rect x="0" y="0" width="40" height="2" fill="#00ffff" opacity="0.3">
+        <animate attributeName="y" values="-2;50;-2" dur="3s" repeatCount="indefinite"/>
+    </rect>
+</svg>

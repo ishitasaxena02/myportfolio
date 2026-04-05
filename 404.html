@@ -2,109 +2,203 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/404.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Favicon -->
-    <link id='favicon' rel="shortcut icon" href="/assets/images/favicon.png" type="image/x-png">
-    <title>Got Lost! Page Not Found</title>
+    <title>404 - Page Not Found | Ishita Saxena</title>
+    <link rel="icon" href="assets/images/profile.jpg" type="image/jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #000;
+            color: #fff;
+            font-family: 'Space Grotesk', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 2;
+            padding: 2rem;
+        }
+
+        .glitch-404 {
+            font-size: clamp(6rem, 20vw, 12rem);
+            font-weight: 900;
+            font-family: 'JetBrains Mono', monospace;
+            color: #00ffff;
+            position: relative;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            animation: flicker 3s infinite;
+        }
+
+        .glitch-404::before,
+        .glitch-404::after {
+            content: '404';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch-404::before {
+            color: #ff0080;
+            animation: glitch-shift 2s infinite;
+            clip-path: inset(0 0 60% 0);
+        }
+
+        .glitch-404::after {
+            color: #00ff41;
+            animation: glitch-shift-2 2.5s infinite;
+            clip-path: inset(60% 0 0 0);
+        }
+
+        @keyframes glitch-shift {
+            0%, 90%, 100% { transform: translate(0); }
+            92% { transform: translate(-4px, 2px); }
+            94% { transform: translate(4px, -2px); }
+            96% { transform: translate(-2px, -1px); }
+            98% { transform: translate(2px, 1px); }
+        }
+
+        @keyframes glitch-shift-2 {
+            0%, 88%, 100% { transform: translate(0); }
+            90% { transform: translate(3px, -2px); }
+            93% { transform: translate(-3px, 2px); }
+            96% { transform: translate(2px, 1px); }
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            92% { opacity: 1; }
+            93% { opacity: 0.8; }
+            94% { opacity: 1; }
+            96% { opacity: 0.9; }
+            97% { opacity: 1; }
+        }
+
+        .terminal-box {
+            background: rgba(20, 20, 30, 0.95);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 500px;
+            font-family: 'JetBrains Mono', monospace;
+            text-align: left;
+            backdrop-filter: blur(10px);
+        }
+
+        .terminal-line {
+            margin-bottom: 0.6rem;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .prompt { color: #00ffff; font-weight: 700; }
+        .error { color: #ff5f56; }
+        .comment { color: rgba(255, 255, 255, 0.4); }
+        .path { color: #ff0080; }
+
+        .message {
+            margin-top: 1.5rem;
+        }
+
+        .message h3 {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.5rem;
+        }
+
+        .message p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-top: 2rem;
+            padding: 0.8rem 1.8rem;
+            background: rgba(0, 255, 255, 0.08);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 8px;
+            color: #00ffff;
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(0, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 0;
+        }
+
+        .scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(0, 255, 255, 0.08);
+            z-index: 1;
+            animation: scan 4s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100vh; }
+        }
+    </style>
 </head>
-<body oncontextmenu="return false">
+<body>
+    <div class="bg-grid"></div>
+    <div class="scanline"></div>
 
-<!-- navbar starts -->
-<header>
-        <a href="/" class="logo"><i class="fab fa-node-js"></i> Jigar</a>
+    <div class="container">
+        <div class="glitch-404">404</div>
 
-        <div id="menu" class="fas fa-bars"></div>
-        <nav class="navbar">
-            <ul>
-            <li><a href="/#home">Home</a></li>
-            <li><a href="/#about">About</a></li>
-            <li><a href="/#skills">Skills</a></li>
-            <li><a href="/#education">Education</a></li>
-            <li><a href="/#work">Work</a></li>
-            <li><a href="/#experience">Experience</a></li>
-            <li><a href="/#contact">Contact</a></li>
-            </ul>
-        </nav>
-</header>
-<!-- navbar ends -->
-
-<!-- 404 section start -->
-<section class="page_404">
-        <div class="container">
-          <div class="wrapper">
-            <h1 class="text-center ">404</h1>
-          </div>
-          
-          <div class="msg">
-          <h3>Looks like you're lost</h3>
-          <p>The page you are looking for is not available!</p>
-           
-          <div class="backbtn">
-            <a href="/" class="btn">
-                <i class="fas fa-arrow-left"></i>
-                <span>Back to Home</span>
-          </a>
-          </div>
-
-          </div>
+        <div class="terminal-box">
+            <div class="terminal-line">
+                <span class="prompt">$</span> cd <span class="path">/requested-page</span>
+            </div>
+            <div class="terminal-line">
+                <span class="error">Error: ENOENT — no such file or directory</span>
+            </div>
+            <div class="terminal-line">
+                <span class="comment">// the page you're looking for doesn't exist</span>
+            </div>
         </div>
-</section>
-<!-- 404 section end -->
 
-<!-- footer section starts -->
-<section class="footer">
+        <div class="message">
+            <h3>Looks like you're lost in the matrix</h3>
+            <p>This route doesn't resolve. Let's get you back on track.</p>
+        </div>
 
-  <div class="box-container">
-
-      <div class="box">
-          <h3>Jigar's Portfolio</h3>
-          <p>Thank you for visiting my personal portfolio website. Connect with me over socials. <br/> <br/> Keep Rising 🚀. Connect with me over live chat!</p>
-      </div>
-
-      <div class="box">
-          <h3>quick links</h3>
-          <a href="/#home"><i class="fas fa-chevron-circle-right"></i> home</a>
-          <a href="/#about"><i class="fas fa-chevron-circle-right"></i> about</a>
-          <a href="/#skills"><i class="fas fa-chevron-circle-right"></i> skills</a>
-          <a href="/#education"><i class="fas fa-chevron-circle-right"></i> education</a>
-          <a href="/#work"><i class="fas fa-chevron-circle-right"></i> work</a>
-          <a href="/#experience"><i class="fas fa-chevron-circle-right"></i> experience</a>
-      </div>
-
-      <div class="box">
-          <h3>contact info</h3>
-          <p> <i class="fas fa-phone"></i>+91 704-302-4736</p>
-          <p> <i class="fas fa-envelope"></i>jigarsable21@gmail.com</p>
-          <p> <i class="fas fa-map-marked-alt"></i>Pune, India-412206</p>
-          <div class="share">
-
-              <a href="https://www.linkedin.com/in/jigar-sable" class="fab fa-linkedin" target="_blank"></a>
-              <a href="https://github.com/jigar-sable" class="fab fa-github" target="_blank"></a>
-              <a href="mailto:jigarsable21@gmail.com" class="fas fa-envelope" target="_blank"></a>
-              <a href="https://twitter.com/jigar_sable" class="fab fa-twitter" target="_blank"></a>
-              <a href="https://t.me/lifecode5" class="fab fa-telegram-plane" target="_blank"></a>
-          </div>
-      </div>
-  </div>
-
-  <h1 class="credit">Designed with <i class="fa fa-heart pulse"></i> by <a href="https://www.linkedin.com/in/jigar-sable"> jigar sable</a></h1>
-
-</section>
-<!-- footer section ends -->
-
-<!-- ==== ALL MAJOR JAVASCRIPT CDNS STARTS ==== -->
-
-<!-- jquery cdn -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<!-- ==== ALL MAJOR JAVASCRIPT CDNS ENDS ==== -->
-
-<script src="/assets/js/404.js"></script>
-
-
+        <a href="/" class="back-btn">
+            <span>&larr;</span>
+            <span>cd /home</span>
+        </a>
+    </div>
 </body>
 </html>

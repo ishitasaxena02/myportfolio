@@ -1,0 +1,247 @@
+/* ===== 1200px — large tablets / small desktops ===== */
+@media (max-width: 1200px) {
+    .skills-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .experience-card {
+        width: 42%;
+        padding: 28px;
+    }
+
+    .education-card[data-level="matriculation"] { width: 32%; }
+    .education-card[data-level="intermediate"] { width: 33%; }
+    .education-card[data-level="btech"] { width: 35%; }
+}
+
+/* ===== 992px — tablets ===== */
+@media (max-width: 992px) {
+    .holo-nav {
+        gap: 1rem;
+        padding: 0.6rem 1.2rem;
+    }
+
+    .holo-nav a {
+        font-size: 0.7rem;
+        letter-spacing: 0.5px;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .skills-sidebar {
+        width: 20%;
+    }
+
+    .experience-timeline {
+        flex-direction: column;
+        gap: 2rem;
+        align-items: stretch;
+    }
+
+    .experience-card {
+        width: 100%;
+    }
+
+    .experience-card:first-child,
+    .experience-card:last-child {
+        transform: none;
+    }
+
+    .walking-man,
+    .walking-shadow-line {
+        display: none;
+    }
+
+    .education-grid {
+        flex-direction: column;
+        height: auto;
+        gap: 1.5rem;
+        padding: 2rem 0;
+    }
+
+    .education-card {
+        width: 100% !important;
+        height: auto !important;
+        transform: none !important;
+    }
+
+    .education-card:hover {
+        transform: scale(1.02) !important;
+    }
+
+    .education-projector-device {
+        display: none;
+    }
+
+    .education-projector-light-beam {
+        display: none;
+    }
+
+    .holographic-container {
+        flex-direction: column;
+    }
+
+    .education-grid {
+        width: 100%;
+    }
+}
+
+/* ===== 768px — mobile landscape / small tablets ===== */
+@media (max-width: 768px) {
+    section {
+        padding: 6rem 1.5rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .holo-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.6rem;
+        padding: 0.5rem 1rem;
+        top: 1rem;
+    }
+
+    .holo-nav a {
+        font-size: 0.65rem;
+    }
+
+    /* Hero */
+    .hero-terminal {
+        max-width: 95%;
+    }
+
+    .hero-terminal-glitch-name {
+        font-size: 1.8rem;
+    }
+
+    .hero-terminal-content {
+        padding: 1.5rem;
+    }
+
+    .terminal-content-image {
+        width: 25%;
+        bottom: 1.5rem;
+        right: 1.5rem;
+    }
+
+    .hero-fab-container {
+        gap: 2rem;
+    }
+
+    .hero-fab-icon {
+        padding: 1rem;
+        font-size: 1.2rem;
+    }
+
+    /* Skills */
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .skills-sidebar {
+        display: none;
+    }
+
+    .skills-code-area {
+        min-height: 50vh;
+        max-height: 50vh;
+    }
+
+    .skills-card {
+        padding: 0.75rem 1rem;
+        flex-direction: row;
+    }
+
+    .skills-icon {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .skills-icon img {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    /* About */
+    .about-chatbot-interface {
+        width: 95%;
+        height: 65vh;
+    }
+
+    .about-header-profile {
+        gap: 0.5rem;
+    }
+
+    .about-header-info h4 {
+        font-size: 0.85rem;
+    }
+
+    /* Contact */
+    .contact-terminal {
+        max-width: 95%;
+    }
+
+    .contact-field {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+
+    .contact-flag {
+        padding-top: 0;
+    }
+}
+
+/* ===== 480px — mobile portrait ===== */
+@media (max-width: 480px) {
+    section {
+        padding: 5rem 1rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .holo-nav a {
+        font-size: 0.6rem;
+        letter-spacing: 0;
+    }
+
+    .hero-terminal-glitch-name {
+        font-size: 1.4rem;
+    }
+
+    .hero-code-line {
+        font-size: 0.8rem;
+    }
+
+    .terminal-content-image {
+        display: none;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-chatbot-interface {
+        width: 98%;
+        height: 60vh;
+    }
+
+    .about-chat-messages {
+        padding: 1rem;
+    }
+
+    .about-user-message .about-message-content,
+    .about-ai-message .about-message-content {
+        max-width: 90%;
+    }
+
+    .contact-terminal-body {
+        padding: 1rem;
+    }
+}

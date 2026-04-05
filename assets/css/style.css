@@ -1,6 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap");
 
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --dark-bg: #0a0a0a;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --text-primary: #ffffff;
+    --text-secondary: #b4b4b4;
+    --text-glow: rgb(6, 198, 232);
+    --text-glow-secondary: rgb(255, 32, 210);
+    --glow: rgba(102, 126, 234, 0.3);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -10,34 +24,54 @@
   border: none;
   text-transform: capitalize;
   transition: all 0.2s linear;
+  font-family: "Nunito", sans-serif;
 }
+
 html {
-  font-size: 62.5%;
+  font-size: 12px;
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent-gradient);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-gradient);
+}
+
 body {
-  background: #f7f7f7;
-  font-family: "Poppins", sans-serif;
+    background: var(--dark-bg);
+    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
-*::selection {
-  background: #2b3dda;
-  color: #fff;
-}
-
-html {
-  font-size: 62.5%;
-  overflow-x: hidden;
-}
-html::-webkit-scrollbar {
-  width: 0.8rem;
-}
-html::-webkit-scrollbar-track {
-  background: rgb(235, 202, 245);
-}
-html::-webkit-scrollbar-thumb {
-  background: #420177;
+/* Animated background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(120, 200, 255, 0.2) 0%, transparent 50%);
+    z-index: -1;
+    animation: float 20s ease-in-out infinite;
 }
 
 /* pre loader start */
@@ -59,67 +93,64 @@ html::-webkit-scrollbar-thumb {
 /* pre loader end */
 
 /* navbar starts */
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.7rem 10%;
-  height: 6.5rem;
-  background-color: #fff;
-  box-shadow: 0 1px 4px rgba(146, 161, 176, 0.3);
+.navbar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--card-border);
+    border-radius: 50px;
+    padding: 12px 24px;
+    animation: slideDown 0.8s ease-out;
 }
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateX(-50%) translateY(-50px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.navbar a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 8px 16px;
+    border-radius: 25px;
+}
+
+.navbar a:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.navbar ul li a.active {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.1);
+}
+
 section {
   min-height: 100vh;
-  padding: 2rem 9%;
+  padding: 6rem 9% 2rem 9%;
 }
 .heading {
   font-size: 3.5rem;
-  color: rgb(32, 32, 32);
+  color: var(--text-primary);
   font-weight: 800;
   text-align: center;
 }
 .heading span {
-  color: rgb(115, 3, 167);
-}
-header .logo {
-  font-size: 1.9rem;
-  font-weight: 800;
-  text-decoration: none;
-  color: #0e2431;
-}
-header .logo i {
-  font-size: 2.2rem;
-}
-header .logo:hover {
-  color: #fc8c05;
-}
-header .navbar ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-header .navbar li {
-  margin-left: 2.5rem;
-}
-header .navbar ul li a {
-  font-size: 1.57rem;
-  color: #0e2431;
-  font-weight: 600;
-  text-decoration: none;
-  letter-spacing: 0.04rem;
-  transition: 0.2s;
-}
-header .navbar ul li a.active,
-header .navbar ul li a:hover {
-  color: #011aff;
-  border-bottom: 0.2rem solid #011aff;
-  padding: 0.5rem 0;
+  color: var(--text-glow);
 }
 /* navbar ends */
 
@@ -186,6 +217,7 @@ header .navbar ul li a:hover {
   gap: 1.5rem;
   min-height: 100vh;
   align-items: center;
+  justify-content: space-between;
 }
 .home #particles-js {
   position: absolute;
@@ -203,57 +235,51 @@ header .navbar ul li a:hover {
   width: 100%;
 }
 .home .content {
-  flex: 1 1 40rem;
-  padding-top: 1rem;
   z-index: 1;
-}
-.home .image {
-  flex: 1 1 40rem;
-  z-index: 1;
-}
-.home .image img {
-  width: 70%;
-  margin-left: 6rem;
-  border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-}
-.home .image img:hover {
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
 }
 .home .content h2 {
   font-size: 5rem;
   font-weight: 800;
-  color: #002057;
+  color: var(--text-primary)
 }
 .home .content h2 span {
   font-size: 5rem;
   font-weight: 800;
-  color: #ff7b00;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 .home .content p {
   font-size: 2.5rem;
-  color: #000;
+  color: var(--text-secondary);
   font-weight: 600;
-  padding: 1rem 0;
 }
 .home .content p span {
   font-size: 2.5rem;
-  color: rgb(148, 8, 8);
   font-weight: 600;
-  padding: 1rem 0;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
+
+.home .home-btn-content {
+  display: flex;
+  align-items: center;
+}
+
 .home .btn {
-  margin-top: 1rem;
-  position: absolute;
   line-height: 0;
   padding: 1.6rem 3rem;
   border-radius: 4em;
   transition: 0.5s;
-  color: #fff;
-  background: #2506ad;
+  background: var(--primary-gradient);
+  color: var(--text-primary);
   box-shadow: 0px 5px 18px rgba(48, 68, 247, 0.6);
-  font-family: "Nunito", sans-serif;
 }
 .home .btn span {
   font-weight: 700;
@@ -266,35 +292,39 @@ header .navbar ul li a:hover {
   transition: 0.3s;
 }
 .home .btn:hover {
-  background: #1a047e;
+  transform: translateY(2px);
 }
-.home .btn:hover i {
-  transform: translateX(5px);
+.home .image {
+  width: 30%;
+  z-index: 1;
+}
+.home .image img {
+  width: 100%;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+.home .image img:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 /* social icons start */
-.socials {
-  position: relative;
-  margin-top: 9rem;
-}
 .socials .social-icons {
-  padding-left: 0;
-  margin-bottom: 0;
   list-style: none;
+  display: flex;
+  gap: 1rem;
 }
 .socials .social-icons li {
   display: inline-block;
-  margin-bottom: 14px;
 }
 .social-icons a {
   font-size: 2rem;
   display: inline-block;
-  line-height: 44px;
-  color: #00d9ff;
-  background-color: #09011b;
-  width: 44px;
-  height: 44px;
+  line-height: 4rem;
+  color: var(--text-glow);
+  background-color: var(--card-bg);
+  width: 4rem;
+  height: 4rem;
   text-align: center;
-  margin-right: 8px;
   border-radius: 100%;
   -webkit-transition: all 0.2s linear;
   -o-transition: all 0.2s linear;
@@ -346,21 +376,21 @@ header .navbar ul li a:hover {
 
 /* about section starts */
 .about {
-  background: rgb(255, 255, 255);
+  border-top: solid 1px var(--card-border)
 }
 .about .row {
   display: flex;
   flex-direction: row;
-  gap: 2rem;
-  flex-wrap: wrap;
-  padding: 4rem;
+  width: 100%;
+  gap: 5rem;
+  margin-top: 2rem;
 }
 .about .row .image {
   text-align: center;
-  flex: 1 1 35rem;
+  display: flex;
+  align-items: center;
 }
 .about .row .image img {
-  margin: 4rem;
   width: 30rem;
   height: auto;
   border-radius: 5%;
@@ -373,23 +403,22 @@ header .navbar ul li a:hover {
   mix-blend-mode: normal;
 }
 .about .row .content {
-  flex: 1 1 45rem;
-  padding: 3rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 .about .row .content h3 {
-  color: rgb(27, 27, 27);
+  color: var(--text-primary);
   font-size: 2.5rem;
 }
 .about .row .content .tag {
   font-size: 1.4rem;
-  color: #020133;
+  color: var(--text-glow-secondary);
   font-weight: 600;
-  margin-top: 1rem;
 }
 .about .row .content p {
   font-size: 1.5rem;
-  margin-top: 1.5rem;
-  font-family: "Nunito";
   font-weight: 600;
   text-transform: none;
 }
@@ -397,26 +426,24 @@ header .navbar ul li a:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  font-family: "Nunito";
   font-weight: 600;
 }
 .about .row .content .box-container .box p {
   text-transform: none;
 }
 .about .row .content .box-container .box p span {
-  color: #011aff;
+  color: var(--text-glow);
 }
 .resumebtn {
-  margin-top: 6rem;
+  display: flex;
 }
 .resumebtn .btn {
-  padding: 1.7rem 3rem;
+  padding: 1rem 2rem;
   border-radius: 0.5em;
   transition: 0.3s;
-  color: #fff;
-  background: #2506ad;
+  color: var(--text-primary);
+  background: var(--primary-gradient);
   box-shadow: 0px 5px 10px rgba(48, 68, 247, 0.6);
-  font-family: "Nunito", sans-serif;
 }
 .resumebtn .btn span {
   font-weight: 600;
@@ -461,47 +488,38 @@ header .navbar ul li a:hover {
 /* skills section starts */
 .skills {
   min-height: 90vh;
-  background: linear-gradient(to bottom, #57059e, #4a00e0);
-}
-.skills h2 {
-  color: #fff;
-}
-.skills .heading span {
-  color: rgb(255, 230, 0);
+  border-top: solid 1px var(--text-glow);
 }
 .skills .container {
-  background: rgba(0, 0, 22, 0.4);
-  color: #fff;
+  background: var(--card-bg);
+  color: var(--text-primary);
   border-radius: 1rem;
   padding: 2rem;
-  width: 90%;
-  margin: auto;
-  margin-top: 2rem;
+  margin-top: 4rem;
+  width: 100%;
 }
 .skills .container .row {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  flex-wrap: wrap;
   gap: 1.8rem;
 }
 .skills .container .bar {
-  margin-bottom: 15px;
-  padding: 10px;
+  padding: 1.5rem;
   border-radius: 1rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  background: rgba(0, 0, 22, 0.9);
+  background: var(--card-bg);
   transition: 0.2s;
 }
 .skills .container .bar:hover {
-  box-shadow: 0 8px 10px rgba(0, 2, 68, 0.8) !important;
-  background-color: rgba(0, 0, 0, 0.9) !important;
+  box-shadow: 0 4px 5px rgba(0, 2, 68, 0.8) !important;
+  border: solid 1px var(--text-glow);
 }
 .skills .container .bar .info {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   gap: 1rem;
-  margin-top: 1rem;
 }
 .skills .container .bar .info i {
   font-size: 4rem;
@@ -541,15 +559,14 @@ header .navbar ul li a:hover {
 
 /* education section starts */
 .education {
-  background: #e5ecfb;
   min-height: 80vh;
+  border-top: solid 1px var(--text-glow);
 }
 .education .qoute {
   font-size: 1.5rem;
   text-align: center;
-  font-family: "Nunito", sans-serif;
   font-weight: 600;
-  margin-top: 0.5rem;
+  color: var(--text-glow-secondary);
 }
 .education .box-container {
   display: flex;
@@ -557,27 +574,27 @@ header .navbar ul li a:hover {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-top: 1.5rem;
+  gap: 1.5rem;
 }
 .education .box-container .box {
   display: flex;
   flex-direction: row;
-  width: 80%;
+  width: 70%;
   border-radius: 0.5rem;
   box-shadow: 0.2rem 0.5rem 1rem rgba(0, 0, 0, 0.2);
   text-align: center;
   position: relative;
-  margin-top: 2rem;
   overflow: hidden;
   transition: 0.3s;
-  background: rgb(252, 252, 252);
+  background: var(--card-bg);
 }
 .education .box-container .box:hover {
   transform: scale(1.03);
   box-shadow: 1rem 0.5rem 1.2rem rgba(0, 0, 0, 0.3);
 }
 .education .box-container .box .image {
-  flex: 1 1 20rem;
-  width: 100%;
+  width: 30%;
 }
 .education .box-container .box img {
   object-fit: cover;
@@ -589,29 +606,24 @@ header .navbar ul li a:hover {
   position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   padding: 1rem;
   flex-wrap: wrap;
   flex: 1 1 70rem;
 }
 .education .box-container .box .content h3 {
-  font-size: 2.5rem;
-  color: #012970;
-  padding: 0.5rem 0;
+  font-size: 2rem;
+  color: var(--text-glow);
   font-weight: 600;
   text-align: left;
-  margin-left: 1rem;
 }
 .education .box-container .box .content p {
-  font-size: 1.5rem;
-  margin-left: 1rem;
   text-align: left;
 }
 .education h4 {
-  font-size: 2rem;
-  color: rgb(34, 109, 0);
+  font-size: 1.5rem;
+  color: var(--text-glow-secondary);
   text-align: left;
-  margin: 1rem;
-  font-family: "Nunito", sans-serif;
   font-weight: 700;
 }
 
@@ -648,15 +660,7 @@ header .navbar ul li a:hover {
 
 /* work section starts */
 .work {
-  /* background: #010124; */
-  background: linear-gradient(to bottom, #000031, #00002c);
-}
-.work h2 {
-  color: #fff;
-  padding: 1rem;
-}
-.work .heading span {
-  color: rgb(255, 230, 0);
+  border-top: solid 1px var(--text-glow);
 }
 .work .box-container {
   display: flex;
@@ -750,7 +754,6 @@ header .navbar ul li a:hover {
 .work .viewall .btn span {
   font-weight: 600;
   font-size: 1.7rem;
-  font-family: "Nunito", sans-serif;
 }
 .work .viewall .btn i {
   margin-left: 0.3rem;
@@ -889,7 +892,6 @@ header .navbar ul li a:hover {
 .morebtn .btn span {
   font-weight: 600;
   font-size: 1.7rem;
-  font-family: "Nunito", sans-serif;
 }
 .morebtn .btn i {
   margin-left: 0.3rem;
@@ -946,13 +948,12 @@ header .navbar ul li a:hover {
 
 /* contact section starts */
 .contact {
-  background: #e5ecfb;
   min-height: 60vh;
 }
 .contact .container {
   max-width: 1050px;
   width: 100%;
-  background: #fff;
+  background: var(--card-bg);
   border-radius: 1.5rem;
   margin: 2rem 5rem;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
@@ -1058,7 +1059,6 @@ form .button-area {
   background: #2506ad;
   box-shadow: 0px 5px 10px rgba(48, 68, 247, 0.6);
   transition: 0.3s ease;
-  font-family: "Nunito", sans-serif;
 }
 .button-area button:hover {
   background: #421cecf5;
@@ -1105,46 +1105,47 @@ form .button-area {
 .footer {
   min-height: auto;
   padding-top: 0;
-  background: rgb(0, 1, 43);
+  background: var(--card-bg);
 }
 .footer .box-container {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  padding: 2rem 0;
+  gap: 2rem;
 }
 .footer .box-container .box {
-  flex: 1 1 25rem;
-  margin: 2.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 .footer .box-container .box h3 {
   font-size: 2.5rem;
-  color: #fff;
-  padding-bottom: 1rem;
+  color: var(--text-glow);
   font-weight: normal;
 }
 .footer .box-container .box p {
   font-size: 1.5rem;
-  color: #ccc;
-  padding: 0.7rem 0;
+  color: var(--text-primary);
   text-transform: none;
 }
 .footer .box-container .box p i {
   padding-right: 1rem;
-  color: #ffae00;
+  color: var(--text-glow);
 }
 .footer .box-container .box a {
   font-size: 1.5rem;
-  color: rgb(238, 238, 238);
-  padding: 0.3rem 0;
+  color: var(--text-primary);
   display: block;
 }
 .footer .box-container .box a:hover {
-  color: #ffae00;
+  color: var(--text-glow);
 }
 .footer .box-container .box .share {
   display: flex;
   flex-wrap: wrap;
   padding: 1rem 0;
+  gap: 1rem;
 }
 .footer .box-container .box .share a {
   height: 4rem;
@@ -1153,29 +1154,27 @@ form .button-area {
   text-align: center;
   border-radius: 5rem;
   font-size: 1.7rem;
-  margin-right: 1rem;
   transition: 0.2s;
-  background: rgb(230, 230, 230);
-  color: #02094b;
-  border: none;
-}
-.footer .box-container .box .share a:hover {
   background: transparent;
   transform: scale(0.98);
-  border: 0.1rem solid rgb(180, 178, 178);
-  color: #ffae00;
+  border: 0.1rem solid var(--text-glow);
+  color: var(--text-glow);
+}
+.footer .box-container .box .share a:hover {
+  border: none;
+  background: var(--primary-gradient);
+  color: var(--text-primary);
 }
 .footer .credit {
   padding: 1rem 0 0 0;
   text-align: center;
   font-size: 1.5rem;
-  font-family: "Nunito", sans-serif;
   font-weight: 600;
-  color: #fff;
-  border-top: 0.1rem solid #fff3;
+  color: var(--text-primary);
+  border-top: 0.1rem solid var(--card-border);
 }
 .footer .credit a {
-  color: #ffae00;
+  color: var(--text-glow);
 }
 .footer .fa {
   color: #e90606;
@@ -1227,8 +1226,8 @@ form .button-area {
   right: 2rem;
   padding: 1rem 1.5rem;
   font-size: 2rem;
-  background: #ffae00;
-  color: rgb(13, 0, 44);
+  background: var(--primary-gradient);
+  color: var(--text-primary);
   border-radius: 50%;
   transition: 1s linear;
   z-index: 1000;

@@ -1,0 +1,36 @@
+:root {
+    /* Color System */
+    --primary: #00ffff;
+    --secondary: #ff0080;
+    --accent: #ff6b35;
+    --background: #000;
+    --surface: rgba(0, 0, 0, 0.8);
+    --text: #fff;
+    --text-muted: rgba(255, 255, 255, 0.7);
+    --text-secondary: rgba(255, 255, 255, 0.5);
+    --matrix-green: #00ff41;
+
+    /* Muted glow tokens */
+    --glow-subtle: rgba(0, 255, 255, 0.15);
+    --glow-medium: rgba(0, 255, 255, 0.25);
+    --border-subtle: rgba(0, 255, 255, 0.2);
+    --border-muted: rgba(255, 255, 255, 0.1);
+
+    /* Gradients */
+    --hologram-gradient: linear-gradient(45deg, var(--secondary), var(--primary), var(--secondary));
+    --glow-gradient: radial-gradient(circle, var(--primary) 20%, transparent 80%);
+    --surface-gradient: linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 128, 0.05) 100%);
+    --tech-terminal: linear-gradient(145deg, rgba(20, 20, 30, 0.95) 0%, rgba(30, 30, 45, 0.95) 100%);
+
+    /* Typography */
+    --font-primary: 'Space Grotesk', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Layout */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-xxl: 50px;
+    --radius-full: 50%;
+}
